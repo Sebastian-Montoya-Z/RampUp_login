@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=simple
 User=vagrant
-WorkingDirectory=/home/vagrant/RampUp/RampUp_login/auth-api
+WorkingDirectory=/home/vagrant/RampUp_login/auth-api
 Environment=JWT_SECRET=PRFT AUTH_API_PORT=8000 USERS_API_ADDRESS=http://127.0.0.1:8083
 ExecStart=/home/vagrant/RampUp/RampUp_login/auth-api/auth-api
 

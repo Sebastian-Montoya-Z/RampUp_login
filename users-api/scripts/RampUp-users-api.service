@@ -1,0 +1,15 @@
+[Unit]
+Description=MicroService app - users-api
+After=network.target
+
+[Service]
+Type=simple
+User=vagrant
+WorkingDirectory=/home/vagrant/RampUp_login/users-api
+Environment=JWT_SECRET=PRFT SERVER_PORT=8083
+ExecStart=/usr/bin/java -jar target/users-api-0.0.1-SNAPSHOT.jar
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

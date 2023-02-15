@@ -6,9 +6,8 @@ After=network.target
 Type=simple
 User=vagrant
 WorkingDirectory=/home/vagrant/RampUp_login/auth-api
-Environment=JWT_SECRET=PRFT AUTH_API_PORT=8000 USERS_API_ADDRESS=http://127.0.0.1:8083
-ExecStartPre=/home/vagrant/RampUp_login/auth-api/scripts/go.sh
-ExecStartPost=/home/vagrant/RampUp_login/auth-api/auth-api
+Environment=
+ExecStart=/home/vagrant/RampUp_login/auth-api/scripts/go.sh
 
 Restart=always
 

@@ -7,6 +7,12 @@ pipeline {
     }
 
     stages {
+        stage('Clone repository') {
+            steps {
+                git branch: 'Development', url: 'https://github.com/Sebastian-Montoya-Z/RampUp_login'
+            }
+        }
+
         stage('Build image') {
             steps{
                 script {
@@ -30,7 +36,7 @@ pipeline {
                 ansiblePlaybook(
                     playbook: "${env.ANSIBLE_PLAYBOOK_PATH}",
                     inventory: "${env.ANSIBLE_INVENTORY_PATH}",
-                    extras: '-e ilb=internal-SMZ-lb-internal-945498851.us-east-1.elb.amazonaws.com'
+                    extras: '-e ilb=internal-SMZ-lb-internal-338455689.us-east-1.elb.amazonaws.com'
                 )
             }
         }

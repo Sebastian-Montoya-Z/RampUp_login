@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script{
                     sh 'cd /etc/ansible'
-                    sh 'sudo ansible-playbook playbooks/auth.yml -i aws_ec2.yml --extra-vars="ilb=internal-SMZ-lb-internal-338455689.us-east-1.elb.amazonaws.com nlb=SMZ-nlb-redis-dfbebd3f8854322f.elb.us-east-1.amazonaws.com"'
+                    sh 'ansible-playbook playbooks/auth.yml -i aws_ec2.yml --extra-vars="ilb=internal-SMZ-lb-internal-338455689.us-east-1.elb.amazonaws.com nlb=SMZ-nlb-redis-dfbebd3f8854322f.elb.us-east-1.amazonaws.com"'
                 }
             }
         }

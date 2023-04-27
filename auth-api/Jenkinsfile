@@ -33,6 +33,9 @@ pipeline {
 
         stage('Run Ansible Playbook') {
             steps {
+                script{
+                    sh 'ls'
+                }
                 ansiblePlaybook(
                     playbook: "${env.ANSIBLE_PLAYBOOK_PATH}",
                     inventory: "${env.ANSIBLE_INVENTORY_PATH}",

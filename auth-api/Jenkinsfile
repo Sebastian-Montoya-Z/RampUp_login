@@ -35,6 +35,7 @@ pipeline {
             steps {
                 script{
                     sh 'ls'
+                    sh 'echo $PWD'
                 }
                 ansiblePlaybook(
                     playbook: "${env.ANSIBLE_PLAYBOOK_PATH}",

@@ -3,6 +3,7 @@ pipeline {
     environment {
         ANSIBLE_PLAYBOOK_PATH = '/etc/ansible/playbooks/auth.yml'
         ANSIBLE_INVENTORY_PATH = '/etc/ansible/aws_ec2.yml'
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
 
     stages {
@@ -18,6 +19,7 @@ pipeline {
         stage('push image') {
             steps{
                 script {
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                     sh ' docker push sebastianmontoyaz/rampup-perfi:auth'
                 }
             }

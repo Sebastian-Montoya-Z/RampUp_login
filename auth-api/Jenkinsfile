@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+    environment {
+        ANSIBLE_PLAYBOOK_PATH = '/etc/ansible/playbooks/auth.yml'
+        ANSIBLE_INVENTORY_PATH = '/etc/ansible/aws_ec2.yml'
+    }
+
+    stages {
+        stage('Build image') {
+            steps{
+                script {
+                    sh 'ls'
+                    sh 'docker build ./frontend -t sebastianmontoyaz/rampup-perfi:auth --no-cache'
+                }
+            }
+        }
+
+        stage('push image') {
+            steps{
+                script {
+                    sh ' docker push sebastianmontoyaz/rampup-perfi:auth'
+                }
+            }
+        }
+
+        stage('Run Ansible Playbook') {
+            steps {
+                ansiblePlaybook(
+                    playbook: "${env.ANSIBLE_PLAYBOOK_PATH}",
+                    inventory: "${env.ANSIBLE_INVENTORY_PATH}",
+                    extras: '-e ilb=internal-SMZ-lb-internal-945498851.us-east-1.elb.amazonaws.com'
+                )
+            }
+        }
+    }
+}

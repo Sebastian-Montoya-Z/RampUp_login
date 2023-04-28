@@ -17,7 +17,7 @@ pipeline {
             steps{
                 script {
                     sh 'ls'
-                    sh 'docker build ./users-api -t sebastianmontoyaz/rampup-perfi:users --no-cache'
+                    sh 'docker build ./users-api -t sebastianmontoyaz/rampup-perfi:users'
                 }
             }
         }
